@@ -109,18 +109,15 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
     }
   }
 
-  onPressedFinish = async () => {
-    if (this.props.storePin) {
-      this.props.storePin(this.state.pinCode)
-    } else {
-      await Keychain.setInternetCredentials(
-        this.props.pinCodeKeychainName,
-        this.props.pinCodeKeychainName,
-        this.state.pinCode,
-        noBiometricsConfig
-      )
-    }
-    if (!!this.props.finishProcess) this.props.finishProcess(this.state.pinCode);
+  onPressedFinish = async (userPass: string) => {
+    const finalPass = userPass + this.state.pinCode;
+    await Keychain.setInternetCredentials(
+      this.props.pinCodeKeychainName,
+      this.props.pinCodeKeychainName,
+      finalPass,
+      noBiometricsConfig
+    )
+    if (!!this.props.finishProcess) this.props.finishProcess(finalPass);
   }
 
   cancelConfirm = () => {
@@ -277,9 +274,11 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
           />
           </>
         )}
+        {this.state.status === PinStatus.confirm && (
         <View style={styles.footerContainer}>
           {this.props.footerComponent(this.onPressedFinish)}
         </View>
+        )}
       </View>
     )
   }
