@@ -2,8 +2,10 @@ import PinCode, { PinStatus } from './PinCode'
 import { noBiometricsConfig } from './utils'
 
 import * as React from 'react'
-import { StyleProp, StyleSheet, TextStyle, View, ViewStyle } from 'react-native'
+import { StyleProp, StyleSheet, TextStyle, View, ViewStyle, Dimensions } from 'react-native'
 import * as Keychain from 'react-native-keychain'
+
+const width = Dimensions.get('screen').width;
 
 /**
  * Pin Code Choose PIN Page
@@ -71,6 +73,7 @@ export interface IProps {
   validationRegex?: RegExp
   vibrationEnabled?: boolean
   delayBetweenAttempts?: number
+  footerComponent: any
 }
 
 export type IState = {
@@ -98,20 +101,26 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
 
   endProcessConfirm = async (pinCode: string) => {
     if (pinCode === this.state.pinCode) {
-      if (this.props.storePin) {
-        this.props.storePin(pinCode)
-      } else {
-        await Keychain.setInternetCredentials(
-          this.props.pinCodeKeychainName,
-          this.props.pinCodeKeychainName,
-          pinCode,
-          noBiometricsConfig
-        )
-      }
-      if (!!this.props.finishProcess) this.props.finishProcess(pinCode)
+      this.setState({
+        pinCode: pinCode,
+      });
     } else {
       this.setState({ status: PinStatus.choose })
     }
+  }
+
+  onPressedFinish = async () => {
+    if (this.props.storePin) {
+      this.props.storePin(this.state.pinCode)
+    } else {
+      await Keychain.setInternetCredentials(
+        this.props.pinCodeKeychainName,
+        this.props.pinCodeKeychainName,
+        this.state.pinCode,
+        noBiometricsConfig
+      )
+    }
+    if (!!this.props.finishProcess) this.props.finishProcess(this.state.pinCode);
   }
 
   cancelConfirm = () => {
@@ -194,6 +203,7 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
           />
         )}
         {this.state.status === PinStatus.confirm && (
+          <>
           <PinCode
             alphabetCharsVisible={this.props.alphabetCharsVisible}
             buttonDeleteComponent={this.props.buttonDeleteComponent || null}
@@ -265,7 +275,11 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
             vibrationEnabled={this.props.vibrationEnabled}
             delayBetweenAttempts={this.props.delayBetweenAttempts}
           />
+          </>
         )}
+        <View style={styles.footerContainer}>
+          {this.props.footerComponent(this.onPressedFinish)}
+        </View>
       </View>
     )
   }
@@ -276,7 +290,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    width: width
+  },
+  footerContainer: {
+    width: "100%",
+    height: "10%"
   }
 })
 

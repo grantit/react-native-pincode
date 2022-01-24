@@ -4,7 +4,7 @@ const colors_1 = require("./design/colors");
 const grid_1 = require("./design/grid");
 const delay_1 = require("./delay");
 const utils_1 = require("./utils");
-const async_storage_1 = require("@react-native-community/async-storage");
+const async_storage_1 = require("@react-native-async-storage/async-storage");
 const d3_ease_1 = require("d3-ease");
 const React = require("react");
 const Animate_1 = require("react-move/Animate");
@@ -111,7 +111,7 @@ class ApplicationLocked extends React.PureComponent {
     async timer() {
         const timeDiff = +new Date(this.timeLocked) - +new Date();
         this.setState({ timeDiff: Math.max(0, timeDiff) });
-        await delay_1.default(1000);
+        await (0, delay_1.default)(1000);
         if (timeDiff < 1000) {
             this.props.changeStatus(utils_1.PinResultStatus.initial);
             async_storage_1.default.multiRemove([

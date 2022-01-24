@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const delay_1 = require("./delay");
 const PinCode_1 = require("./PinCode");
 const utils_1 = require("./utils");
-const async_storage_1 = require("@react-native-community/async-storage");
+const async_storage_1 = require("@react-native-async-storage/async-storage");
 const React = require("react");
 const react_native_1 = require("react-native");
 const Keychain = require("react-native-keychain");
@@ -50,7 +50,7 @@ class PinCodeEnter extends React.PureComponent {
                         this.props.changeInternalStatus(utils_1.PinResultStatus.failure);
                     }
                     if (this.props.onFail) {
-                        await delay_1.default(1500);
+                        await (0, delay_1.default)(1500);
                         this.props.onFail(pinAttempts);
                     }
                 }

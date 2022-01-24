@@ -22,6 +22,8 @@ declare const colors: {
     globalEquities: string;
     altStrategies: string;
     globalDebtSecurities: string;
+    black: string;
+    overlay: string;
 };
 declare const documentColor: (docType: string) => string;
 export { colors, documentColor };

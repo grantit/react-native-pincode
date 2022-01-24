@@ -4,7 +4,7 @@ import PinCodeChoose from "./src/PinCodeChoose";
 import PinCodeEnter from "./src/PinCodeEnter";
 import { hasPinCode, deletePinCode, resetInternalStates, PinResultStatus } from "./src/utils";
 
-import AsyncStorage from '@react-native-community/async-storage'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import * as React from "react";
 import { View, StyleSheet, StyleProp, ViewStyle, TextStyle } from "react-native";
 
@@ -115,6 +115,7 @@ export type IProps = {
   passcodeFallback?: boolean
   vibrationEnabled?: boolean
   delayBetweenAttempts?: number;
+  footerComponent: any;
 }
 
 export type IState = {
@@ -254,6 +255,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
             validationRegex={this.props.validationRegex}
             vibrationEnabled={this.props.vibrationEnabled}
             delayBetweenAttempts={this.props.delayBetweenAttempts}
+            footerComponent={this.props.footerComponent}
           />}
         {status === PinStatus.enter &&
           <PinCodeEnter
@@ -362,6 +364,6 @@ let styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   }
 });
