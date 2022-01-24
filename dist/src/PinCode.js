@@ -512,7 +512,7 @@ const styles = react_native_1.StyleSheet.create({
         justifyContent: "center",
         width: grid_1.grid.unit * 4,
         height: grid_1.grid.unit * 4,
-        backgroundColor: "tranparent",
+        backgroundColor: "transparent",
         borderRadius: grid_1.grid.unit * 2,
     },
     textTitle: {

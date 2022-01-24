@@ -843,7 +843,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: grid.unit * 4,
     height: grid.unit * 4,
-    backgroundColor: "tranparent",
+    backgroundColor: "transparent",
     borderRadius: grid.unit * 2,
   },
   textTitle: {
