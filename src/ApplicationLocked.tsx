@@ -14,7 +14,6 @@ import {
   Text,
   Platform
 } from "react-native";
-import Icon from "react-native-vector-icons/MaterialIcons";
 
 export type IProps = {
   buttonComponent?: any
@@ -168,13 +167,7 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
         style={
           [ styles.viewIcon, this.props.styleViewIcon]
         }>
-        {this.props.lockedIconComponent ?
-          this.props.lockedIconComponent :
-          <Icon
-            name={this.props.nameIcon}
-            size={this.props.sizeIcon}
-            color={this.props.colorIcon}
-          />}
+        {this.props.lockedIconComponent}
       </View>
     );
   };

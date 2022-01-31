@@ -16,7 +16,7 @@ export declare type IProps = {
     customBackSpaceIcon?: any;
     disableLockScreen?: boolean;
     endProcessFunction?: (pinCode: string) => void;
-    finishProcess?: (pinCode?: string) => void;
+    finishProcess?: (pinCode: string) => void;
     getCurrentPinLength?: (length: number) => void;
     handleResultEnterPin?: any;
     iconComponentLockedPage?: any;
@@ -109,6 +109,7 @@ export declare type IProps = {
     vibrationEnabled?: boolean;
     delayBetweenAttempts?: number;
     footerComponent: any;
+    deleteIcon: any;
 };
 export declare type IState = {
     internalPinStatus: PinResultStatus;

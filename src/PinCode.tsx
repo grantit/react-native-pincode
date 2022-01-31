@@ -18,7 +18,6 @@ import {
   ViewStyle,
 } from "react-native";
 import { Col, Row, Grid } from "react-native-easy-grid";
-import Icon from "react-native-vector-icons/MaterialIcons";
 
 const width = Dimensions.get("screen").width;
 
@@ -88,6 +87,7 @@ export interface IProps {
   validationRegex?: RegExp;
   vibrationEnabled?: boolean;
   delayBetweenAttempts?: number;
+  deleteIcon: any;
 }
 
 export interface IState {
@@ -533,12 +533,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
           ) : (
             <>
               {!this.props.iconButtonDeleteDisabled && (
-                <Icon
-                  name={this.props.styleDeleteButtonIcon}
-                  size={this.props.styleDeleteButtonSize}
-                  color={this.state.colorDelete}
-                  // style={{ opacity: opacity }}
-                />
+                this.props.deleteIcon
               )}
             </>
           )}

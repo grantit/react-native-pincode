@@ -74,6 +74,7 @@ export interface IProps {
   vibrationEnabled?: boolean
   delayBetweenAttempts?: number
   footerComponent: any
+  deleteIcon: any;
 }
 
 export type IState = {
@@ -197,6 +198,7 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
             }
             validationRegex={this.props.validationRegex}
             vibrationEnabled={this.props.vibrationEnabled}
+            deleteIcon={this.props.deleteIcon}
           />
         )}
         {this.state.status === PinStatus.confirm && (
@@ -271,14 +273,16 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
             styleViewTitle={this.props.styleViewTitle}
             vibrationEnabled={this.props.vibrationEnabled}
             delayBetweenAttempts={this.props.delayBetweenAttempts}
+            deleteIcon={this.props.deleteIcon}
           />
           </>
         )}
-        {this.state.status === PinStatus.confirm && (
+        
         <View style={styles.footerContainer}>
-          {this.props.footerComponent(this.onPressedFinish)}
+        {this.state.status === PinStatus.confirm && (
+          this.props.footerComponent(this.onPressedFinish)
+          )}
         </View>
-        )}
       </View>
     )
   }
@@ -294,7 +298,7 @@ const styles = StyleSheet.create({
   },
   footerContainer: {
     width: "100%",
-    height: "10%"
+    minHeight: "10%"
   }
 })
 

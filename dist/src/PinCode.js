@@ -10,7 +10,6 @@ const d3_ease_1 = require("d3-ease");
 const Animate_1 = require("react-move/Animate");
 const react_native_1 = require("react-native");
 const react_native_easy_grid_1 = require("react-native-easy-grid");
-const MaterialIcons_1 = require("react-native-vector-icons/MaterialIcons");
 const width = react_native_1.Dimensions.get("screen").width;
 var PinStatus;
 (function (PinStatus) {
@@ -235,7 +234,7 @@ class PinCode extends React.PureComponent {
                 React.createElement(react_native_1.View, { style: [styles.colIcon, this.props.styleColumnDeleteButton] }, this.props.customBackSpaceIcon ? (this.props.customBackSpaceIcon({
                     colorDelete: this.state.colorDelete,
                     opacity,
-                })) : (React.createElement(React.Fragment, null, !this.props.iconButtonDeleteDisabled && (React.createElement(MaterialIcons_1.default, { name: this.props.styleDeleteButtonIcon, size: this.props.styleDeleteButtonSize, color: this.state.colorDelete })))))));
+                })) : (React.createElement(React.Fragment, null, !this.props.iconButtonDeleteDisabled && (this.props.deleteIcon))))));
         };
         this.renderTitle = (colorTitle, opacityTitle, attemptFailed, showError) => {
             return (React.createElement(react_native_1.Text, { style: [

@@ -23,7 +23,7 @@ export type IProps = {
   customBackSpaceIcon?: any
   disableLockScreen?: boolean
   endProcessFunction?: (pinCode: string) => void
-  finishProcess?: (pinCode?: string) => void
+  finishProcess?: (pinCode: string) => void
   getCurrentPinLength?: (length: number) => void
   handleResultEnterPin?: any
   iconComponentLockedPage?: any
@@ -116,6 +116,7 @@ export type IProps = {
   vibrationEnabled?: boolean
   delayBetweenAttempts?: number;
   footerComponent: any;
+  deleteIcon: any;
 }
 
 export type IState = {
@@ -256,6 +257,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
             vibrationEnabled={this.props.vibrationEnabled}
             delayBetweenAttempts={this.props.delayBetweenAttempts}
             footerComponent={this.props.footerComponent}
+            deleteIcon={this.props.deleteIcon}
           />}
         {status === PinStatus.enter &&
           <PinCodeEnter
