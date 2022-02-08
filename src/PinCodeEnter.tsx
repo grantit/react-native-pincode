@@ -92,6 +92,8 @@ export interface IProps {
   passcodeFallback?: boolean
   vibrationEnabled?: boolean
   delayBetweenAttempts?: number
+  footerComponent: any
+  deleteIcon: any;
 }
 
 export interface IState {
@@ -314,7 +316,11 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
           }
           vibrationEnabled={this.props.vibrationEnabled}
           delayBetweenAttempts={this.props.delayBetweenAttempts}
+          deleteIcon={this.props.deleteIcon}
         />
+        <View style={styles.footerContainer}>
+          {this.props.footerComponent()}
+        </View>
       </View>
     )
   }
@@ -325,6 +331,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  footerContainer: {
+    width: "100%",
+    minHeight: "10%"
   }
 })
 
