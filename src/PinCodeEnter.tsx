@@ -169,8 +169,9 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
         this.props.pinAttemptsAsyncStorageName
       )
       let pinAttempts = pinAttemptsStr ? +pinAttemptsStr : 0
-      const pin = this.props.storedPin || this.keyChainResult
-      if (pinValidOverride !== undefined ? pinValidOverride : pin === pinCode) {
+      const pin = this.props.storedPin || this.keyChainResult;
+      const currentPin = pin.split('__SEPRATOR__');
+      if (pinValidOverride !== undefined ? pinValidOverride : currentPin[2] === pinCode) {
         this.setState({ pinCodeStatus: PinResultStatus.success })
         AsyncStorage.multiRemove([
           this.props.pinAttemptsAsyncStorageName,
@@ -178,7 +179,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
         ])
         this.props.changeInternalStatus(PinResultStatus.success)
         if (!!this.props.finishProcess)
-          this.props.finishProcess(pinCode as string)
+          this.props.finishProcess(pin as string)
       } else {
         pinAttempts++
         if (
