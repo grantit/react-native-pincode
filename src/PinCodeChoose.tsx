@@ -75,6 +75,7 @@ export interface IProps {
   delayBetweenAttempts?: number
   footerComponent: any
   deleteIcon: any;
+  keySeprator: string;
 }
 
 export type IState = {
@@ -111,7 +112,7 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
   }
 
   onPressedFinish = async (userAccess: string) => {
-    const finalPass = userAccess + '__SEPRATOR__' + this.state.pinCode;
+    const finalPass = userAccess + this.props.keySeprator + this.state.pinCode;
     await Keychain.setInternetCredentials(
       this.props.pinCodeKeychainName,
       this.props.pinCodeKeychainName,

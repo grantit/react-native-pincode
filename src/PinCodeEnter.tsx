@@ -94,6 +94,7 @@ export interface IProps {
   delayBetweenAttempts?: number
   footerComponent: any
   deleteIcon: any;
+  keySeprator: string;
 }
 
 export interface IState {
@@ -170,7 +171,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
       )
       let pinAttempts = pinAttemptsStr ? +pinAttemptsStr : 0
       const pin = this.props.storedPin || this.keyChainResult;
-      const currentPin = pin.split('__SEPRATOR__');
+      const currentPin = pin.split(this.props.keySeprator);
       if (pinValidOverride !== undefined ? pinValidOverride : currentPin[2] === pinCode) {
         this.setState({ pinCodeStatus: PinResultStatus.success })
         AsyncStorage.multiRemove([

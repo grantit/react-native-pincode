@@ -26,7 +26,7 @@ class PinCodeEnter extends React.PureComponent {
                 const pinAttemptsStr = await async_storage_1.default.getItem(this.props.pinAttemptsAsyncStorageName);
                 let pinAttempts = pinAttemptsStr ? +pinAttemptsStr : 0;
                 const pin = this.props.storedPin || this.keyChainResult;
-                const currentPin = pin.split('__SEPRATOR__');
+                const currentPin = pin.split(this.props.keySeprator);
                 if (pinValidOverride !== undefined ? pinValidOverride : currentPin[2] === pinCode) {
                     this.setState({ pinCodeStatus: utils_1.PinResultStatus.success });
                     async_storage_1.default.multiRemove([

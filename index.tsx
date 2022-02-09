@@ -117,6 +117,7 @@ export type IProps = {
   delayBetweenAttempts?: number;
   footerComponent: any;
   deleteIcon: any;
+  keySeprator: string;
 }
 
 export type IState = {
@@ -258,6 +259,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
             delayBetweenAttempts={this.props.delayBetweenAttempts}
             footerComponent={this.props.footerComponent}
             deleteIcon={this.props.deleteIcon}
+            keySeprator={this.props.keySeprator}
           />}
         {status === PinStatus.enter &&
           <PinCodeEnter
@@ -336,6 +338,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
             delayBetweenAttempts={this.props.delayBetweenAttempts}
             footerComponent={this.props.footerComponent}
             deleteIcon={this.props.deleteIcon}
+            keySeprator={this.props.keySeprator}
           />}
         {(pinStatus === PinResultStatus.locked ||
           this.state.internalPinStatus === PinResultStatus.locked ||

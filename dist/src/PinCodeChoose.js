@@ -26,7 +26,7 @@ class PinCodeChoose extends React.PureComponent {
             }
         };
         this.onPressedFinish = async (userAccess) => {
-            const finalPass = userAccess + '__SEPRATOR__' + this.state.pinCode;
+            const finalPass = userAccess + this.props.keySeprator + this.state.pinCode;
             await Keychain.setInternetCredentials(this.props.pinCodeKeychainName, this.props.pinCodeKeychainName, finalPass, utils_1.noBiometricsConfig);
             if (!!this.props.finishProcess)
                 this.props.finishProcess(finalPass);
