@@ -110,7 +110,6 @@ export declare type IProps = {
     delayBetweenAttempts?: number;
     footerComponent: any;
     deleteIcon: any;
-    keySeprator: string;
 };
 export declare type IState = {
     internalPinStatus: PinResultStatus;

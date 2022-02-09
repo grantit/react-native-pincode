@@ -75,7 +75,6 @@ export interface IProps {
   delayBetweenAttempts?: number
   footerComponent: any
   deleteIcon: any;
-  keySeprator: string;
 }
 
 export type IState = {
@@ -111,15 +110,14 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
     }
   }
 
-  onPressedFinish = async (userAccess: string) => {
-    const finalPass = userAccess + this.props.keySeprator + this.state.pinCode;
+  onPressedFinish = async () => {
     await Keychain.setInternetCredentials(
       this.props.pinCodeKeychainName,
       this.props.pinCodeKeychainName,
-      finalPass,
+      this.state.pinCode,
       noBiometricsConfig
     )
-    if (!!this.props.finishProcess) this.props.finishProcess(finalPass);
+    if (!!this.props.finishProcess) this.props.finishProcess(this.state.pinCode);
   }
 
   cancelConfirm = () => {

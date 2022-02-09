@@ -81,7 +81,6 @@ export interface IProps {
     delayBetweenAttempts?: number;
     footerComponent: any;
     deleteIcon: any;
-    keySeprator: string;
 }
 export interface IState {
     pinCodeStatus: PinResultStatus;
