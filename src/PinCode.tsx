@@ -291,6 +291,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
                   this.props.styleTextButton,
                   {
                     opacity: opacity,
+                    fontFamily: this.props.textPasswordVisibleFamily,
                     color:
                       this.state.textButtonSelected === text
                         ? this.props.styleColorButtonTitleSelected
@@ -307,6 +308,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
                     this.props.styleAlphabet,
                     {
                       opacity: opacity,
+                      fontFamily: this.props.textPasswordVisibleFamily,
                       color:
                         this.state.textButtonSelected === text
                           ? this.props.styleColorButtonTitleSelected
@@ -553,7 +555,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
         style={[
           styles.textTitle,
           this.props.styleTextTitle,
-          { color: colorTitle, opacity: opacityTitle },
+          { color: colorTitle, opacity: opacityTitle, fontFamily: this.props.textPasswordVisibleFamily },
         ]}
       >
         {(attemptFailed && this.props.titleAttemptFailed) ||
@@ -575,7 +577,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
         style={[
           styles.textSubtitle,
           this.props.styleTextSubtitle,
-          { color: colorTitle, opacity: opacityTitle },
+          { color: colorTitle, opacity: opacityTitle, fontFamily: this.props.textPasswordVisibleFamily },
         ]}
       >
         {attemptFailed || showError

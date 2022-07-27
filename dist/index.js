@@ -54,15 +54,15 @@ PINCode.defaultProps = {
     styleMainContainer: null
 };
 function hasUserSetPinCode(serviceName) {
-    return (0, utils_1.hasPinCode)(serviceName || pinCodeKeychainNameDefault);
+    return utils_1.hasPinCode(serviceName || pinCodeKeychainNameDefault);
 }
 exports.hasUserSetPinCode = hasUserSetPinCode;
 function deleteUserPinCode(serviceName) {
-    return (0, utils_1.deletePinCode)(serviceName || pinCodeKeychainNameDefault);
+    return utils_1.deletePinCode(serviceName || pinCodeKeychainNameDefault);
 }
 exports.deleteUserPinCode = deleteUserPinCode;
 function resetPinCodeInternalStates(pinAttempsStorageName, timePinLockedStorageName) {
-    return (0, utils_1.resetInternalStates)([
+    return utils_1.resetInternalStates([
         pinAttempsStorageName || pinAttemptsAsyncStorageNameDefault,
         timePinLockedStorageName || timePinLockedAsyncStorageNameDefault
     ]);

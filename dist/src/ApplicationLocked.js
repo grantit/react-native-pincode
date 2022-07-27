@@ -108,7 +108,7 @@ class ApplicationLocked extends React.PureComponent {
     async timer() {
         const timeDiff = +new Date(this.timeLocked) - +new Date();
         this.setState({ timeDiff: Math.max(0, timeDiff) });
-        await (0, delay_1.default)(1000);
+        await delay_1.default(1000);
         if (timeDiff < 1000) {
             this.props.changeStatus(utils_1.PinResultStatus.initial);
             async_storage_1.default.multiRemove([
