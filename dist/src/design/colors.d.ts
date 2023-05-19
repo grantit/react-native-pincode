@@ -4,5 +4,7 @@ declare const colors: {
     black: string;
     white: string;
     transparent: string;
+    transparentBlue: string;
+    lightTransparentBlue: string;
 };
 export { colors };

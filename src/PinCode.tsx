@@ -109,15 +109,15 @@ class PinCode extends React.PureComponent<IProps, IState> {
   static defaultProps: Partial<IProps> = {
     alphabetCharsVisible: false,
     styleButtonCircle: null,
-    colorCircleButtons: colors.transparent,
+    colorCircleButtons: colors.transparentBlue,
     styleDeleteButtonColorHideUnderlay: colors.transparent,
-    numbersButtonOverlayColor: colors.grey100,
+    numbersButtonOverlayColor: colors.lightTransparentBlue,
     styleDeleteButtonColorShowUnderlay: colors.grey100,
     styleTextButton: null,
-    styleColorButtonTitleSelected: colors.black,
-    styleColorButtonTitle: colors.black,
-    colorPasswordError: colors.black,
-    colorPassword: colors.black,
+    styleColorButtonTitleSelected: colors.white,
+    styleColorButtonTitle: colors.white,
+    colorPasswordError: colors.white,
+    colorPassword: colors.white,
     styleCircleHiddenPassword: null,
     styleColumnDeleteButton: null,
     styleDeleteButtonIcon: 'backspace',
@@ -127,10 +127,10 @@ class PinCode extends React.PureComponent<IProps, IState> {
     styleTextTitle: null,
     styleTextSubtitle: null,
     styleContainer: null,
-    styleColorTitle: colors.black,
-    styleColorSubtitle: colors.black,
-    styleColorTitleError: colors.black,
-    styleColorSubtitleError: colors.black,
+    styleColorTitle: colors.white,
+    styleColorSubtitle: colors.white,
+    styleColorTitleError: colors.white,
+    styleColorSubtitleError: colors.white,
     styleViewTitle: null,
     styleRowButtons: null,
     styleColumnButtons: null,
@@ -270,7 +270,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
         {({ opacity }: any) => (
           <TouchableHighlight
             style={[
-              styles.buttonCircle,
+              styles.deleteButtonCircle,
               { backgroundColor: this.props.colorCircleButtons },
               this.props.styleButtonCircle,
             ]}
@@ -411,13 +411,11 @@ class PinCode extends React.PureComponent<IProps, IState> {
                 width: [
                   lengthSup ? this._circleSizeFull : this._circleSizeEmpty,
                 ],
-                color: [
-                  showError
-                    ? colorPwdErr
-                    : lengthSup && password.length > 0
-                    ? colorPwd
-                    : colorPwdEmp,
-                ],
+                color: showError
+                  ? colorPwdErr
+                  : lengthSup && password.length > 0
+                  ? colorPwd
+                  : colorPwdEmp,
                 borderRadius: [
                   lengthSup
                     ? this._circleSizeFull / 2
@@ -469,7 +467,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
                     <View
                       style={{
                         left: x,
-                        width: this._circleSizeFull,
+                        // width: this._circleSizeFull,
                         opacity: opacity,
                         marginLeft: marginLeft,
                         marginRight: marginRight,
@@ -542,7 +540,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
                 style={[
                   styles.text,
                   // this.props.styleDeleteButtonText,
-                  { opacity: opacity },
+                  { opacity: opacity, color: this.props.styleColorButtonTitle },
                   { fontFamily: this.props.fontFamily },
                 ]}
               >
@@ -593,9 +591,10 @@ class PinCode extends React.PureComponent<IProps, IState> {
           { fontFamily: this.props.fontFamily },
         ]}
       >
-        {attemptFailed || showError
-          ? this.props.subtitleError
-          : this.props.subtitle}
+        {(attemptFailed && this.props.subtitleError) ||
+          (showError && this.props.titleConfirmFailed) ||
+          (showError && this.props.titleValidationFailed) ||
+          this.props.subtitle}
       </Text>
     );
   };
@@ -640,7 +639,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
               style={[
                 styles.viewTitle,
                 this.props.styleViewTitle,
-                { opacity: opacity },
+                // { opacity: opacity },
               ]}
             >
               {this.props.titleComponent
@@ -855,6 +854,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgb(242, 245, 251)',
     borderRadius: grid.unit * 2,
   },
+  deleteButtonCircle: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: grid.unit * 3.5,
+    height: grid.unit * 3.5,
+    borderRadius: grid.unit * 2,
+},
   textTitle: {
     fontSize: 26,
     fontWeight: '400',
