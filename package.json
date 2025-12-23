@@ -49,11 +49,12 @@
     "lodash": "4.17.21",
     "react-move": "6.5.0",
     "react-native-easy-grid": "0.2.2",
-    "react-native-keychain": "8.1.1",
+    "react-native-keychain": "10.0.0",
     "react-native-touch-id": "4.4.1"
   },
   "peerDependencies": {
     "react": "*",
     "react-native": "*"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
 }
