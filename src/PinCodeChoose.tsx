@@ -113,7 +113,7 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
           this.props.pinCodeKeychainName,
           this.props.pinCodeKeychainName,
           pinCode,
-          noBiometricsConfig
+          { ...noBiometricsConfig }
         );
       }
       if (!!this.props.finishProcess) this.props.finishProcess(pinCode);

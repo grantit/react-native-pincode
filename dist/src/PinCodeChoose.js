@@ -20,7 +20,7 @@ class PinCodeChoose extends React.PureComponent {
                     this.props.storePin(pinCode);
                 }
                 else {
-                    await Keychain.setInternetCredentials(this.props.pinCodeKeychainName, this.props.pinCodeKeychainName, pinCode, utils_1.noBiometricsConfig);
+                    await Keychain.setInternetCredentials(this.props.pinCodeKeychainName, this.props.pinCodeKeychainName, pinCode, Object.assign({}, utils_1.noBiometricsConfig));
                 }
                 if (!!this.props.finishProcess)
                     this.props.finishProcess(pinCode);

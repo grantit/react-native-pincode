@@ -18,16 +18,15 @@ const hasPinCode = async (serviceName) => {
 };
 exports.hasPinCode = hasPinCode;
 const deletePinCode = async (serviceName) => {
-    return await Keychain.resetInternetCredentials(serviceName);
+    return await Keychain.resetInternetCredentials({ server: serviceName });
 };
 exports.deletePinCode = deletePinCode;
 const resetInternalStates = async (asyncStorageKeys) => {
     return await async_storage_1.default.multiRemove(asyncStorageKeys);
 };
 exports.resetInternalStates = resetInternalStates;
-exports.noBiometricsConfig = react_native_1.Platform.select({
-    android: {
+exports.noBiometricsConfig = react_native_1.Platform.OS === 'android'
+    ? {
         accessControl: Keychain.ACCESS_CONTROL.APPLICATION_PASSWORD,
-    },
-    ios: {},
-});
+    }
+    : {};

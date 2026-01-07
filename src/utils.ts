@@ -16,16 +16,16 @@ export const hasPinCode = async (serviceName: string) => {
 };
 
 export const deletePinCode = async (serviceName: string) => {
-  return await Keychain.resetInternetCredentials(serviceName);
+  return await Keychain.resetInternetCredentials({ server: serviceName });
 };
 
 export const resetInternalStates = async (asyncStorageKeys: string[]) => {
   return await AsyncStorage.multiRemove(asyncStorageKeys);
 };
 
-export const noBiometricsConfig = Platform.select({
-  android: {
-    accessControl: Keychain.ACCESS_CONTROL.APPLICATION_PASSWORD,
-  },
-  ios: {},
-});
+export const noBiometricsConfig =
+  Platform.OS === 'android'
+    ? {
+        accessControl: Keychain.ACCESS_CONTROL.APPLICATION_PASSWORD,
+      }
+    : {};
